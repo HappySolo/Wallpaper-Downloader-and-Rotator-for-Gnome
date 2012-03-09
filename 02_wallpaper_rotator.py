@@ -19,8 +19,6 @@ import random
 from time import sleep
 
 import config as cfg
-from wallpapers.helper import gnome
-
 
 def print_info():
     li = [cfg.get_photo_dir_by_key(key) for key in cfg.ROTATOR_CHOICE]
@@ -73,7 +71,19 @@ def main():
     print_info()
     
     wp = WallpaperPicker()
-    
+
+    no_of_monitors = 1
+
+    #tested on 10.7 only ;)
+    if sys.platform == 'darwin':
+        from wallpapers.helper import macos as os_handler
+        no_of_monitors = os_handler.get_no_of_monitors()
+    else:
+        from wallpapers.helper import gnome as os_handler
+
+    if cfg.SINGLE_WALLPAPER:
+        no_of_monitors = 1
+
     while True:
         # if you modify the config file, this script doesn't have to be restarted
         reload(cfg)
@@ -89,15 +99,18 @@ def main():
         if nb_images == 0:
             # there are no images in the directory => do nothing
             pass
-        
+
+        walls = []
         if nb_images == 1:
             # there is only one image => easy choice
-            wallpaper = wp.get_first_image()
+            walls.append(wp.get_first_image())
             
         if nb_images > 1:
-            # there are several images => choose a different image than the previous pick
-            wallpaper = wp.get_random_image()
-            gnome.set_wallpaper_image(wallpaper)
+            for i in range(no_of_monitors):
+                # there are several images => choose a different image than the previous pick
+                walls.append(wp.get_random_image())
+
+        os_handler.set_wallpaper_image(walls)
             
         wp.free_memory()
             

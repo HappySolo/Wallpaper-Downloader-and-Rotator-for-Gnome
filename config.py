@@ -11,9 +11,15 @@ import sys
 # Base dir. Set it in ABSOLUTE path. No slash at the end.
 # Images will be saved here.
 BASE_DIR = '/dev/null'
-#number of times for wget to retry
+# WGET CONF
+# number of times for wget to retry
 WGET_RET = 1
+# timeout
 WGET_TIMEOUT=30
+
+#the same image on multiple monitors?
+SINGLE_WALLPAPER = False
+
 # types of websites
 REDDIT_COM = 0
 WALLBASE_CC = 1
