@@ -10,8 +10,10 @@ import sys
 
 # Base dir. Set it in ABSOLUTE path. No slash at the end.
 # Images will be saved here.
-BASE_DIR = '/trash/gnome-wallpapers'
-
+BASE_DIR = '/dev/null'
+#number of times for wget to retry
+WGET_RET = 1
+WGET_TIMEOUT=30
 # types of websites
 REDDIT_COM = 0
 WALLBASE_CC = 1

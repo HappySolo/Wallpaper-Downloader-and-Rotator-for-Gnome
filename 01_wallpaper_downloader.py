@@ -77,7 +77,11 @@ def download_images(image_urls):
             filename = os.path.basename(img_url)
             if not os.path.exists(cfg.PHOTO_DIR + filename):
                 referer_string = web.get_referrer_string(img_url)  # to trick 4walled.org
-                cmd = "wget {ref} {url} -O {save}".format(url=img_url, save=os.path.join(cfg.PHOTO_DIR, filename), ref=referer_string)
+                cmd = "wget -t {retry_count} -T {timeout} {ref} {url} -O {save}".format(url=img_url,
+                                                                           save=os.path.join(cfg.PHOTO_DIR, filename),
+                                                                           ref=referer_string,
+                                                                           retry_count=cfg.WGET_RET,
+                                                                           timeout=cfg.WGET_TIMEOUT)
                 print cmd
                 os.system(cmd)
                 fetched.append(img_url)
