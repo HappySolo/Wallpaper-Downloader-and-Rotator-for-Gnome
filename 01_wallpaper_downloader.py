@@ -63,7 +63,10 @@ def register_good_and_bad_image_urls_to_db(good_images, bad_images):
 def delete_bad_images(bad_image_urls):
     """Delete images from the file system that are not suitable for wallpapers."""
     for url in bad_image_urls:
-        os.remove(cfg.PHOTO_DIR + web.get_file_name(url))
+        try:
+          os.remove(cfg.PHOTO_DIR + web.get_file_name(url))
+        except Exception as e:
+          print("Error while removing: {0}, E: {1}".format(url, e))
 
     print("# removed image(s): {0}".format(len(bad_image_urls)))
 

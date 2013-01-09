@@ -44,8 +44,13 @@ def get_flickr_images(soup):
 
 def get_image_url_list(url):
     """Controller function for getting the URLs of the JPG images."""
-    soup = BeautifulSoup(urllib2.urlopen(url).read())
-    
+    print url
+    try:
+      soup = BeautifulSoup(urllib2.urlopen(url).read())
+    except urllib2.HTTPError, err:
+      print "REDDIT Exception {0}".format(err.strerror) 
+      return []
+
     list_1 = get_jpg_images(soup)
     list_2 = get_flickr_images(soup)
     

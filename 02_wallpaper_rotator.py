@@ -110,6 +110,8 @@ def main():
                 # there are several images => choose a different image than the previous pick
                 walls.append(wp.get_random_image())
 
+
+        print "Walls: {0}".format(walls) 	
         os_handler.set_wallpaper_image(walls)
             
         wp.free_memory()
