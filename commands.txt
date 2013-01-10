@@ -1,0 +1,2 @@
+nohup ./01_wallpaper_downloader.py &
+nohup ./02_wallpaper_rotator.py &
