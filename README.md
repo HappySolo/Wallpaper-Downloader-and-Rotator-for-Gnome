@@ -1,7 +1,7 @@
 Wallpaper Downloader and Rotator for Gnome - some updates
 
 - added mac 10.9 and up
-- multiplatform suppor clean up
+- multiplatform support clean up
 
 Original wrap up
 ==========================================
@@ -12,5 +12,3 @@ Original wrap up
 * Version:   0.6.8
 * Website:   <https://ubuntuincident.wordpress.com/2011/04/06/wallpaper-downloader-and-rotator-for-gnome/>
 * GitHub:    <https://github.com/jabbalaci/Wallpaper-Downloader-and-Rotator-for-Gnome>
-==========================================
-
