@@ -23,7 +23,7 @@ import config as cfg
 def print_info():
     li = [cfg.get_photo_dir_by_key(key) for key in cfg.ROTATOR_CHOICE]
 
-    print "# Jabba's Wallpaper Rotator for Gnome v0.2"
+    print "# Solo's wallpaper rotator 0.5"
     print "#", li
     print "# initial duration: {0} sec.".format(cfg.DURATION)
 
@@ -77,6 +77,9 @@ def main():
     #tested on 10.7 only ;)
     if sys.platform == 'darwin':
         from wallpapers.helper import macos as os_handler
+        no_of_monitors = os_handler.get_no_of_monitors()
+    else if sys.platform == 'win32':
+        from wallpapers.helper import windows as os_handler
         no_of_monitors = os_handler.get_no_of_monitors()
     else:
         from wallpapers.helper import gnome as os_handler
