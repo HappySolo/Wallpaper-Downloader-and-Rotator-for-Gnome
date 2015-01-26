@@ -7,9 +7,15 @@ Random might return the same wallpaper :)
 Requires appscript (sudo easy_install appscript)
 Code thanks to Glen from stackoverflow
 Current options: set the wallpaper.
+Works wih >10.9 
 """
 
 from appscript import *
+import glob
+import random
+ 
+from AppKit import NSWorkspace, NSScreen
+from Foundation import NSURL
 
 def set_wallpaper_image(imgs, mode='stretched'):
     """Set the given file as wallpaper."""
@@ -17,15 +23,11 @@ def set_wallpaper_image(imgs, mode='stretched'):
         return
 
     default_image = imgs[0]
-
-    se = app('System Events')
-    desktops = se.desktops.display_name.get()
-    for i, d in enumerate(desktops):
-        desk = se.desktops[its.display_name == d]
-        img = imgs[i] if len(imgs) > i else default_image
-        #TODO: figure out how to resize image properly
-        #looks like system events doesn't have this property
-        desk.picture.set(mactypes.File(img))
-
+    file_url = NSURL.fileURLWithPath_(default_image)
+    options = {}
+    ws = NSWorkspace.sharedWorkspace()
+    for screen in NSScreen.screens():
+      (result, error) = ws.setDesktopImageURL_forScreen_options_error_(file_url, screen, options, None)
+    
 def get_no_of_monitors():
     return len(app('System Events').desktops.display_name.get())

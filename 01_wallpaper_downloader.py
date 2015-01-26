@@ -10,7 +10,7 @@ See the README file for more details.
 """
 
 import os
-import Image
+from PIL import Image
 
 import config as cfg
 import wallpapers.helper.database as db

@@ -4,7 +4,7 @@
 Resize images.
 """
 
-import Image
+from PIL import Image
 
 import config as cfg
 
